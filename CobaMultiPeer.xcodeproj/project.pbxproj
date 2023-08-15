@@ -7,18 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		615AE5592A88BC85005222D7 /* PairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615AE5582A88BC85005222D7 /* PairView.swift */; };
+		615AE55B2A88BD18005222D7 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615AE55A2A88BD18005222D7 /* GameView.swift */; };
+		615AE55F2A88CA4D005222D7 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615AE55E2A88CA4D005222D7 /* StartView.swift */; };
+		615AE5612A88CAC3005222D7 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615AE5602A88CAC3005222D7 /* OrderView.swift */; };
 		615D10D52A8335A4007699FE /* CobaMultiPeerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615D10D42A8335A4007699FE /* CobaMultiPeerApp.swift */; };
 		615D10D72A8335A4007699FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615D10D62A8335A4007699FE /* ContentView.swift */; };
 		615D10D92A8335A5007699FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 615D10D82A8335A5007699FE /* Assets.xcassets */; };
 		615D10DC2A8335A5007699FE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 615D10DB2A8335A5007699FE /* Preview Assets.xcassets */; };
+		61AD98542A8B038200CB78E1 /* KitchenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AD98532A8B038200CB78E1 /* KitchenView.swift */; };
+		61C782D92A848EFD00B7726F /* MPConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C782D82A848EFD00B7726F /* MPConnectionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		615AE5582A88BC85005222D7 /* PairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairView.swift; sourceTree = "<group>"; };
+		615AE55A2A88BD18005222D7 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		615AE55E2A88CA4D005222D7 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		615AE5602A88CAC3005222D7 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		615D10D12A8335A4007699FE /* CobaMultiPeer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CobaMultiPeer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		615D10D42A8335A4007699FE /* CobaMultiPeerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CobaMultiPeerApp.swift; sourceTree = "<group>"; };
 		615D10D62A8335A4007699FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		615D10D82A8335A5007699FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		615D10DB2A8335A5007699FE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		61AD98532A8B038200CB78E1 /* KitchenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenView.swift; sourceTree = "<group>"; };
+		61C782D62A848DD100B7726F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		61C782D82A848EFD00B7726F /* MPConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPConnectionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +64,17 @@
 		615D10D32A8335A4007699FE /* CobaMultiPeer */ = {
 			isa = PBXGroup;
 			children = (
+				61C782D72A848EB100B7726F /* MultiPeerConnectivity */,
+				61C782D62A848DD100B7726F /* Info.plist */,
 				615D10D42A8335A4007699FE /* CobaMultiPeerApp.swift */,
 				615D10D62A8335A4007699FE /* ContentView.swift */,
 				615D10D82A8335A5007699FE /* Assets.xcassets */,
 				615D10DA2A8335A5007699FE /* Preview Content */,
+				615AE5582A88BC85005222D7 /* PairView.swift */,
+				615AE55A2A88BD18005222D7 /* GameView.swift */,
+				615AE55E2A88CA4D005222D7 /* StartView.swift */,
+				615AE5602A88CAC3005222D7 /* OrderView.swift */,
+				61AD98532A8B038200CB78E1 /* KitchenView.swift */,
 			);
 			path = CobaMultiPeer;
 			sourceTree = "<group>";
@@ -65,6 +85,14 @@
 				615D10DB2A8335A5007699FE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		61C782D72A848EB100B7726F /* MultiPeerConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				61C782D82A848EFD00B7726F /* MPConnectionManager.swift */,
+			);
+			path = MultiPeerConnectivity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +165,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				615AE5592A88BC85005222D7 /* PairView.swift in Sources */,
 				615D10D72A8335A4007699FE /* ContentView.swift in Sources */,
 				615D10D52A8335A4007699FE /* CobaMultiPeerApp.swift in Sources */,
+				615AE55F2A88CA4D005222D7 /* StartView.swift in Sources */,
+				615AE5612A88CAC3005222D7 /* OrderView.swift in Sources */,
+				61AD98542A8B038200CB78E1 /* KitchenView.swift in Sources */,
+				61C782D92A848EFD00B7726F /* MPConnectionManager.swift in Sources */,
+				615AE55B2A88BD18005222D7 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +304,8 @@
 				DEVELOPMENT_TEAM = 3Q7J3887JY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CobaMultiPeer/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Woud like to play Xs and Os";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +335,8 @@
 				DEVELOPMENT_TEAM = 3Q7J3887JY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CobaMultiPeer/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Woud like to play Xs and Os";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

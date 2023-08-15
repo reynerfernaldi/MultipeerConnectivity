@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct CobaMultiPeerApp: App {
+//    @StateObject var rpsSession = RPSMultipeerSession(username: "YourUsername") // Inisialisasi RPSMultipeerSession
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StartView()
+//                .environmentObject(rpsSession)
         }
     }
 }
