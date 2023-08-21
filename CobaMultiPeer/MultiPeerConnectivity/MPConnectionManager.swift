@@ -8,22 +8,24 @@
 import MultipeerConnectivity
 import os
 
-struct Menu: Codable {
-    var makanan: String
-    var quantity: Int
-    var id: UUID
-    
-}
+//struct Menu: Codable {
+//    var makanan: String
+//    var quantity: Int
+//    var id: UUID
+//
+//}
+//
+//struct Orders: Codable {
+//    var menus: [Menu]
+//    var username: String
+//    var id: UUID
+//
+//}
 
-struct Orders: Codable {
-    var menus: [Menu]
-    var username: String
-    var id: UUID
-    
-}
 
 
 class RPSMultipeerSession: NSObject, ObservableObject {
+    
     private let serviceType = "CMP"
     private var myPeerID: MCPeerID
     
@@ -63,6 +65,30 @@ class RPSMultipeerSession: NSObject, ObservableObject {
     deinit {
         serviceAdvertiser.stopAdvertisingPeer()
         serviceBrowser.stopBrowsingForPeers()
+    }
+    
+    func sendToAllClients(menu: Orders) {
+        do {
+            var menuWithUsername = menu
+            menuWithUsername.username = "Server" // Atur username host di sini
+            let menuData = try JSONEncoder().encode(menuWithUsername)
+            try session.send(menuData, toPeers: session.connectedPeers, with: .reliable)
+        } catch {
+            log.error("Error sending to all clients: \(String(describing: error))")
+        }
+    }
+    
+    func sendToServer(menu: Orders) {
+        if let serverPeerID = availablePeers.first(where: { $0.displayName == "Server" }) {
+            do {
+                var menuWithUsername = menu
+                menuWithUsername.username = username
+                let menuData = try JSONEncoder().encode(menuWithUsername)
+                try session.send(menuData, toPeers: [serverPeerID], with: .reliable)
+            } catch {
+                log.error("Error sending to server: \(String(describing: error))")
+            }
+        }
     }
     
     func send(menu: Orders) {
@@ -133,11 +159,10 @@ extension RPSMultipeerSession: MCSessionDelegate {
         case MCSessionState.notConnected:
             // Peer disconnected
             DispatchQueue.main.async {
-                self.paired = false
+//                self.paired = false
                 print("not connected")
             }
-            // Peer disconnected, start accepting invitaions again
-            serviceAdvertiser.startAdvertisingPeer()
+
             break
         case MCSessionState.connected:
             // Peer connected
@@ -146,7 +171,14 @@ extension RPSMultipeerSession: MCSessionDelegate {
                 print("connected")
             }
             // We are paired, stop accepting invitationsß
-            serviceAdvertiser.stopAdvertisingPeer()
+            
+//            if self.username == "Server" {
+                // If yes, start advertising again
+                serviceAdvertiser.startAdvertisingPeer()
+//            }
+//            else{
+//                serviceAdvertiser.stopAdvertisingPeer()
+//            }
             break
         default:
             // Peer connecting or something else
@@ -160,10 +192,20 @@ extension RPSMultipeerSession: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         do {
             let receivedMenu = try JSONDecoder().decode(Orders.self, from: data)
+            print ("ini recevemenu MPC", receivedMenu)
             DispatchQueue.main.async {
-                self.orders.append(receivedMenu) // Set nilai receivedMenu di dalam session
+                if let index = self.orders.firstIndex(where: {$0.id == receivedMenu.id}){
+                    print("Ketemu! di index ke", index)
+                    self.orders[index].isReady = true
+                } else {
+                    print("Buat Baru!")
+                    self.orders.append(receivedMenu) // Set nilai receivedMenu di dalam session
+                }
+                
+                
+//                self.orders.append(receivedMenu) // Set nilai receivedMenu di dalam session
                 print("Received")
-                print("\(self.orders)")
+                print("Ini Isinya MPC, \(self.orders)")
                 self.objectWillChange.send()
             }
             

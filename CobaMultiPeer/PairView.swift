@@ -12,13 +12,12 @@ import os
 struct PairView: View {
     @EnvironmentObject var rpsSession: RPSMultipeerSession
 
-    @Binding var currentView: Int
     var logger = Logger()
 
     var body: some View {
         if (!rpsSession.paired) {
             HStack {
-                List(rpsSession.availablePeers, id: \.self) { peer in
+                List(rpsSession.availablePeers.filter{$0.displayName == "Server"}, id: \.self) { peer in
                     Button(peer.displayName) {
                         rpsSession.serviceBrowser.invitePeer(peer, to: rpsSession.session, withContext: nil, timeout: 30)
                     }
@@ -38,9 +37,6 @@ struct PairView: View {
             }
         } else {
             OrderView()
-//                .environmentObject(rpsSession)
-//            GameView(currentView: $currentView)
-//                .environmentObject(rpsSession)
         }
     }
 }
