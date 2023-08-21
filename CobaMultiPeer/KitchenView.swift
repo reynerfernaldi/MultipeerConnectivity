@@ -44,6 +44,9 @@ struct KitchenView: View {
                 
                 
             }
+//            .onChange(of: rpsSession.orders) { newValue in
+//                print("Keganti")
+//            }
 //            .onReceive(rpsSession.$orders) { receivedMenus in
 //                orderData.removeAll()
 //                orderData.append(contentsOf: receivedMenus) // Tambahkan menu yang diterima ke daftar yang dipesan

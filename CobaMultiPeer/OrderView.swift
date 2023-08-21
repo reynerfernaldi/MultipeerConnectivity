@@ -10,7 +10,7 @@ import SwiftUI
 struct OrderView: View {
     @EnvironmentObject var rpsSession: RPSMultipeerSession
 //    @State private var orderData: [Orders] = []
-    @State private var showAlert = false
+//    @State private var showAlert = false
     var body: some View {
         VStack{
             List{
@@ -35,12 +35,12 @@ struct OrderView: View {
             .onAppear {
                 print("executed2")
                 // Mendengarkan notifikasi ketika status isReady berubah
-                NotificationCenter.default.addObserver(forName: Notification.Name("IsReadyChanged"), object: nil, queue: .main) { _ in
-                    showAlert = true// Tampilkan alert ketika notifikasi diterima
-                    print ("executed2")
-                }
+//                NotificationCenter.default.addObserver(forName: Notification.Name("IsReadyChanged"), object: nil, queue: .main) { _ in
+//                    showAlert = true// Tampilkan alert ketika notifikasi diterima
+//                    print ("executed2")
+                
             }
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $rpsSession.isChange) {
                 Alert(
                     title: Text("Order Status Changed"),
                     message: Text("The order status has changed to ready."),
@@ -52,7 +52,7 @@ struct OrderView: View {
                 let menu = Orders(menus: [Menu(makanan: "Nasi Goreng", quantity: 2, id: UUID()),
                                           Menu(makanan: "Nasi Pecel", quantity: 4, id: UUID())], username: rpsSession.username, isReady: false, id: UUID())
 
-//                orderData.append( menu)
+                rpsSession.orders.append( menu)
                 rpsSession.send(menu: menu)
             }
         }
